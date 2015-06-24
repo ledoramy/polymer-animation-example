@@ -1,0 +1,59 @@
+<!--
+  one way animation using neon-animated-pages
+-->
+
+<dom-module id="multiple-objects">
+  <style>
+    :host {
+      display: block;
+    }
+
+    #pages {
+      height: 100%;
+    }
+
+    #action {
+      margin-top: 8px;
+      margin-bottom: 8px;
+    }
+
+    .button {
+      background-color: #1B5E20;
+      color: #fafafa;
+    }
+
+  </style>
+  <template>
+    <div id="action">
+      <paper-button class="button" on-click="runAnimation">push me</paper-button>
+      <span>several times</span>
+    </div>
+    <neon-animated-pages id="pages" selected="0">
+      <animated-multiple-small></animated-multiple-small>
+      <animated-multiple-big></animated-multiple-big>
+    </neon-animated-pages>
+  </template>
+</dom-module>
+<script>
+  (function () {
+    Polymer({
+      is: 'multiple-objects',
+      animatedPages: null,
+
+      ready: function() {
+        this.animatedPages = this.$.pages;
+      },
+
+
+      runAnimation: function () {
+        if(this.animatedPages.selected == 0) {
+          this.animatedPages.selected = 1;
+        } else {
+          this.animatedPages.selected = 0;
+        }
+      }
+
+    });
+  })();
+</script>
+

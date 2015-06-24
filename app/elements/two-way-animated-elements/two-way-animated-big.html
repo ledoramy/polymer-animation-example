@@ -1,0 +1,58 @@
+<!-- every element which we will put in neon-animated-pages has to implement NeonAnimatableBehavior int their behaviors-->
+
+<dom-module id="two-way-animated-big">
+  <style>
+    :host {
+      display: block;
+      position: relative;
+    }
+
+    #bigimage {
+      position: absolute;
+      bottom: 64px;
+      right: 10px;
+    }
+
+  </style>
+
+  <template>
+    <img id="bigimage" src="../../images/touch/chrome-touch-icon-192x192.png">
+  </template>
+
+  <script>
+    Polymer({
+      is: 'two-way-animated-big',
+
+      behaviors: [
+        Polymer.NeonAnimatableBehavior
+      ],
+
+      properties: {
+        animationConfig: {
+          value: function() {
+            return {
+              'entry': {
+                name: 'hero-animation',
+                id: 'animate',
+                toPage: this
+              },
+              'exit': {
+                name: 'hero-animation',
+                id: 'animate',
+                fromPage: this
+              }
+            }
+          }
+
+        },
+        sharedElements: {
+          value: function() {
+            return {
+              'animate': this.$.bigimage
+            }
+          }
+        }
+      }
+    });
+  </script>
+</dom-module>

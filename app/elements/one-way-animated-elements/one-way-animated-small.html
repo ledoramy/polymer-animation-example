@@ -1,0 +1,54 @@
+<!-- every element which we will put in neon-animated-pages has to implement NeonAnimatableBehavior int their behaviors-->
+
+<dom-module id="one-way-animated-small">
+  <style>
+    :host {
+      display: block;
+    }
+
+    #circle {
+      background-color: #4CAF50;
+      height: 64px;
+      width: 64px;
+      border-radius: 50%;
+    }
+
+  </style>
+
+  <template>
+    <div id="circle"></div>
+  </template>
+
+  <script>
+    Polymer({
+      is: 'one-way-animated-small',
+
+      behaviors: [
+        Polymer.NeonAnimatableBehavior
+      ],
+
+
+      properties: {
+        animationConfig: {
+          value: function() {
+            return {
+              'exit':{
+                name: 'hero-animation',
+                id: 'hero',
+                fromPage: this
+              }
+            }
+          }
+        },
+        sharedElements: {
+          value: function() {
+            return {
+              'hero': this.$.circle
+            }
+          }
+        }
+      }
+
+    });
+  </script>
+</dom-module>

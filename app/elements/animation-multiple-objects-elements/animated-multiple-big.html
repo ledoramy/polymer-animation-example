@@ -1,0 +1,82 @@
+<!-- every element which we will put in neon-animated-pages has to implement NeonAnimatableBehavior int their behaviors-->
+
+<dom-module id="animated-multiple-big">
+  <style>
+    :host {
+      display: block;
+      position: relative;
+    }
+
+    #bigreb {
+      position: absolute;
+      height: 128px;
+      bottom: 100px;
+      right: 10px;
+    }
+
+    #bigemp {
+      position: absolute;
+      height: 128px;
+      top: 10px;
+      right: 10px;
+    }
+
+  </style>
+
+  <template>
+    <img id="bigreb" src="../../images/reb.jpg">
+    <img id="bigemp" src="../../images/emp.svg">
+  </template>
+
+  <script>
+    Polymer({
+      is: 'animated-multiple-big',
+
+      behaviors: [
+        Polymer.NeonAnimatableBehavior
+      ],
+
+      properties: {
+        animationConfig: {
+          value: function() {
+            return {
+              'entry': [
+                {
+                  name: 'hero-animation',
+                  id: 'rebellion',
+                  toPage: this
+                },
+                {
+                  name: 'hero-animation',
+                  id: 'empire',
+                  toPage: this
+                }
+              ],
+              'exit': [
+                {
+                  name: 'hero-animation',
+                  id: 'rebellion',
+                  fromPage: this
+                },
+                {
+                  name: 'hero-animation',
+                  id: 'empire',
+                  fromPage: this
+                }
+              ]
+            }
+          }
+
+        },
+        sharedElements: {
+          value: function() {
+            return {
+              'rebellion': this.$.bigreb,
+              'empire': this.$.bigemp
+            }
+          }
+        }
+      }
+    });
+  </script>
+</dom-module>

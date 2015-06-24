@@ -1,0 +1,57 @@
+<!-- every element which we will put in neon-animated-pages has to implement NeonAnimatableBehavior int their behaviors-->
+
+<dom-module id="one-way-animated-big">
+  <style>
+    :host {
+      display: block;
+      position: relative;
+    }
+
+    #bigcircle {
+      position: absolute;
+      bottom: 64px;
+      right: 10px;
+      background-color: #4CAF50;
+      height: 128px;
+      width: 128px;
+      border-radius: 50%;
+    }
+
+  </style>
+
+  <template>
+    <div id="bigcircle"></div>
+  </template>
+
+  <script>
+    Polymer({
+      is: 'one-way-animated-big',
+
+      behaviors: [
+        Polymer.NeonAnimatableBehavior
+      ],
+
+      properties: {
+        animationConfig: {
+          value: function() {
+            return {
+              'entry': {
+              name: 'hero-animation',
+              id: 'hero',
+              toPage: this
+              }
+            }
+          }
+
+        },
+        sharedElements: {
+          value: function() {
+            return {
+              'hero': this.$.bigcircle
+            }
+          }
+        }
+      }
+    });
+  </script>
+</dom-module>
